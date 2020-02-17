@@ -1,0 +1,52 @@
+{
+  "name": "localue4docbrowser",
+  "version": "1.0.0",
+  "description": "A local browser for Unreal Engine 4 Documentation",
+  "main": "src/server.js",
+  "scripts": {
+    "serve": "babel-node src/server.js",
+    "scrape": "run-s scrape:allapis scrape:allengine scrape:guides scrape:extras scrape:cleanup",
+    "scrape:allapis": "run-s scrape:cppapi scrape:blueprintapi",
+    "scrape:allengine": "run-s scrape:engine scrape:editor",
+    "scrape:cppapi": "bash scrapeUE4Docs.sh API UE4Cpp",
+    "scrape:blueprintapi": "bash scrapeUE4Docs.sh BlueprintAPI UE4Blueprint",
+    "scrape:editor": "bash scrapeUE4Docs.sh Engine/Editor UE4Editor",
+    "scrape:engine": "bash scrapeUE4Docs.sh Engine UE4Engine -docs.unrealengine.com/Engine/Editor/*",
+    "scrape:guides": "bash scrapeUE4Other.sh UE4Guides",
+    "scrape:extras": "bash scrapeUE4Extras.sh UE4Other",
+    "scrape:cleanup": "babel-node src/cleanup.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "UE4",
+    "unreal",
+    "engine",
+    "epic",
+    "games",
+    "game",
+    "dev",
+    "documentation",
+    "offline",
+    "local"
+  ],
+  "author": "Seth Berrier",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "express": "^4.17.1",
+    "merge-dirs": "^0.2.1",
+    "npm-run-all": "^4.1.5",
+    "replace-in-file": "^5.0.2",
+    "wget-improved": "^3.0.2"
+  }
+}
